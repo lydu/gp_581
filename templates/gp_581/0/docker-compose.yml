@@ -1,0 +1,52 @@
+version: '2'
+services:
+  gpmaster:
+     image: 10.0.0.96:5000/database/gp_581:v1 
+     hostname: master
+     labels:
+      io.rancher.scheduler.global: 'true'
+      io.rancher.scheduler.affinity:host_label: key1=102
+     networks: 
+       - docker_gwbridge
+     ports:
+       - "20070:2345"
+     volumes:
+       - /opt/gpmaster/gpdata_581:/home/gpadmin/gpdata
+       - /opt/gpmaster/conf_581:/home/gpadmin/conf
+     privileged: true
+     tty: true
+  gpnode1:
+     image: 10.0.0.96:5000/database/gp_581:v1
+     hostname: sdw1
+     labels:
+      io.rancher.scheduler.global: 'true'
+      io.rancher.scheduler.affinity:host_label: key1=104
+     networks: 
+       - docker_gwbridge
+     ports:
+       - "20071:40000"
+       - "20072:40001"
+       - "20073:43000"
+       - "20074:43001"
+     volumes:
+       - /opt/gpnode1/gpadta_581:/home/gpadmin/gpdata
+     privileged: true
+     tty: true
+  gpnode2:
+     image: 10.0.0.96:5000/database/gp_581:v1
+     hostname: sdw2
+     labels:
+      io.rancher.scheduler.global: 'true'
+      io.rancher.scheduler.affinity:host_label: key1=106
+     networks: 
+       - docker_gwbridge
+     ports:
+       - "20075:40000"
+       - "20076:40001"
+       - "20077:43000"
+       - "20078:43001"
+     volumes:
+       - /opt/gpnode2/gpdata_581:/home/gpadmin/gpdata
+     privileged: true
+     tty: true
+
