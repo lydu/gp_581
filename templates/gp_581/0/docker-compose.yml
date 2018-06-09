@@ -1,7 +1,7 @@
 version: '2'
 services:
   gpmaster:
-     image: 10.0.0.96:5000/database/gp_581:v1 
+     image: 10.0.0.96:5000/database/gp_581:v2 
      hostname: master
      labels:
       io.rancher.scheduler.global: 'true'
@@ -16,7 +16,7 @@ services:
      privileged: true
      tty: true
   gpnode1:
-     image: 10.0.0.96:5000/database/gp_581:v1
+     image: 10.0.0.96:5000/database/gp_581:v2
      hostname: sdw1
      labels:
       io.rancher.scheduler.global: 'true'
@@ -33,7 +33,7 @@ services:
      privileged: true
      tty: true
   gpnode2:
-     image: 10.0.0.96:5000/database/gp_581:v1
+     image: 10.0.0.96:5000/database/gp_581:v2
      hostname: sdw2
      labels:
       io.rancher.scheduler.global: 'true'
